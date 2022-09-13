@@ -1,0 +1,6 @@
+.hiddenClass {
+    display: none;
+}
+.hiddenClass.reveal {
+    display: block;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <style>
+            *:focus {
+                outline: none !important;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                font-size: 20px;
+                background-color: #f4f4f4;
+            }
+
+            .showInput {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2rem;
+            }
+            form {
+                display: block;
+                width: 90%;
+                max-width: 30rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-weight: 600;
+            }
+
+            .container {
+                align-items: center;
+                background: #fff;
+                border: 2px solid #0000;
+                border-radius: 1rem;
+                box-sizing: border-box;
+                box-shadow: 0 1rem 2rem -1.5rem #0005;
+                display: none;
+                overflow: hidden;
+                width: 0;
+                padding: 1rem;
+                transition: width 0.5s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+                pointer-events: none;
+            }
+
+            .container.reveal {
+                width: 100%;
+            }
+
+            .container > div {
+                display: flex;
+                height: 2rem;
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+                border: 0;
+                padding-left: 1rem;
+                font-size: 1rem;
+            }
+
+            button {
+                border: 0;
+                width: 40px;
+                background: transparent;
+            }
+
+            .container button {
+                margin-left: auto;
+                background: transparent;
+                font-size: 1.4rem;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+    <body>
+        <button class="showInput"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        <form>
+            <div class="container">
+                <div>
+                    <input placeholder="검색어를 입력하세요" type="name" />
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            $(document).ready(function () {
+                var target = $('.container');
+                $(document).on('click', '.showInput', function (e) {
+                    $('.showInput').hide();
+                    target.fadeIn(100).addClass('reveal');
+                });
+
+                $(document).mouseup(function (e) {
+                    if (target.has(e.target).length == 0) {
+                        target.fadeOut().removeClass('reveal');
+                        setTimeout(() => {
+                            $('.showInput').fadeIn();
+                        }, 1000);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

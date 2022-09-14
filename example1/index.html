@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            .hiddenClass {
+                display: none;
+            }
+            .hiddenClass.reveal {
+                display: block;
+            }
+        </style>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous"
+        ></script>
+        <title>마우스 커서 자동 이동</title>
+    </head>
+    <body>
+        <button class="showDiv">클릭</button>
+        <div class="hiddenClass">
+            <span>
+                <input type="text" id="focusInput" />
+            </span>
+        </div>
+        <script>
+            $(document).ready(function () {
+                var target = $('.hiddenClass');
+                $(document).on('click', '.showDiv', function (e) {
+                    target
+                        .fadeIn(100, function () {
+                            $('#focusInput').focus();
+                        })
+                        .addClass('reveal');
+                });
+
+                $(document).mouseup(function (e) {
+                    if (target.has(e.target).length == 0) {
+                        target.fadeOut(100).removeClass('reveal');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
